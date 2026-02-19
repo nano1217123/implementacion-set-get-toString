@@ -1,41 +1,46 @@
 package com.example;
 
 public class Product {
+
     private String id;
     private String name;
     private double price;
     private int stock;
 
+    // Default constructor
     public Product() {
-        this.id = null;
-        this.name = null;
+        this.id = "";
+        this.name = "";
         this.price = 0.0;
         this.stock = 0;
     }
 
+    // Parameterized constructor
     public Product(String id, String name, double price, int stock) {
         this.id = id;
         this.name = name;
-        this.price = price;
-        this.stock = stock;
+        setPrice(price);
+        setStock(stock);
     }
 
+    // Getters
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public double getPrice() {
-        return this.price;
+        return price;
     }
 
     public int getStock() {
-        return this.stock;
+        return stock;
     }
 
+    // Setters 
     public void setId(String id) {
         this.id = id;
     }
@@ -44,19 +49,30 @@ public class Product {
         this.name = name;
     }
 
-    public void setPrice(double precio) {
-        if (precio >= 0) {
-            this.price = precio;
-        } 
+    public void setPrice(double price) {
+        if (price >= 0) {
+            this.price = price;
+        } else {
+            System.out.println("Price cannot be negative.");
+        }
     }
 
     public void setStock(int stock) {
         if (stock >= 0) {
             this.stock = stock;
-        } 
+        } else {
+            System.out.println("Stock cannot be negative.");
+        }
     }
 
-    public String toString(){
-    return "Producto {ID='" + this.id + "', Nombre=" + name + "'Precio" + this.price + "'Stock" + stock + "}";
+    public String toString() {
+        return String.format(
+                "Product Details:%n" +
+                "ID: %s%n" +
+                "Name: %s%n" +
+                "Price: $%.2f%n" +
+                "Stock: %d units",
+                id, name, price, stock
+        );
     }
 }
